@@ -21,7 +21,7 @@ function ShowUser({ name, email, phone, website }) {
 
   return (
     <>
-      <div className=" border border-gray-500 m-2 mt-12">
+      <div className=" border border-gray-500 mt-12 ml-12 mr-12 lg:m-2,mt-12 md:m-2 md:mt-12">
 
         <div className="h-50% bg-gray-100 text-center flex items-center justify-center">
           <img

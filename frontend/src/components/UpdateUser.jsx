@@ -1,74 +1,76 @@
+import React from 'react'
+import { useForm } from "react-hook-form"
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+function UpdateUser({onclose}) {
 
-export function UpdateUser({onclose}) {
+    const {
+        register,
+        handleSubmit,
+        // watch,
+        formState: { errors },
+      } = useForm()
+    
+      const onSubmit = (data) => {
+        onclose()
+        console.log(data);
+        console.log(data.name)
+      }
 
-    return (
-      <div className="w-full flex justify-center items-center fixed inset-0  bg-black bg-opacity-30 backdrop-blur-sm ">
-          <Card className="w-[600px]" >
-        <CardHeader>
-          <CardTitle>Update User</CardTitle>
-          <CardDescription>Update user in just one click.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <div className="grid grid-cols-2 w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Enter User's Name" />
-              </div>
-  
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="username">Username</Label>
-                <Input id="username" placeholder="Enter User's userame" />
-              </div>
-  
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Email ID</Label>
-                <Input type={"email"} id="eamil" placeholder="Enter User's email address" />
-              </div>
-              
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="phone">Phone</Label>
-                <Input type={"number"} className="no-spin" id="phone" placeholder="Enter User's Phone Number" />
-              </div>
-  
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Website</Label>
-                <Input id="website" placeholder="Enter User's Website URL" />
-              </div>
-  
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="company">Company Name/Moto</Label>
-                <Input id="company" placeholder="Enter User's Company Name/Moto" />
-              </div>
-  
-              <div className="flex flex-col space-y-1.5 col-span-2">
-                <Label htmlFor="address">Address</Label>
-                <Input id="address" placeholder="street / suite / city / zipcode" />
-              </div>
-  
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button onClick={(onclose)} variant="destructive">Cancel</Button>
-          <Button onClick={(()=>{alert("User Updated"), onclose()})}>Update</Button>
-        </CardFooter>
-      </Card>
+    //   console.log(watch("example")) // watch input value by passing the name of it
+
+  return (
+    <div className="h-screen w-screen flex justify-center items-center fixed inset-0  bg-black bg-opacity-30 backdrop-blur-sm">
+
+       
+        <div className='h-[80%] w-[60%] bg-white rounded-lg flex justify-around items-center flex-col'>
+
+        <h3 className='text-xl font-bold m-0'>Update User</h3>
+
+        {/* "handleSubmit" will validate your inputs before invoking "onSubmit" */}
+    <form onSubmit={handleSubmit(onSubmit)} className='w-[90%] grid grid-cols-2 gap-2'>
+      {/* register your input into the hook by invoking the "register" function */}
+
+      <div className=''>
+      <label htmlFor="name" className='block'>Name</label>
+      <input placeholder="Enter your Name" id='name' {...register("name", { required: true })} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/> 
       </div>
-    )
-  }
+      <div>
+      <label htmlFor="username" className='block'>Username</label>
+      <input placeholder="Enter username" id='username' {...register("username", { required: true })} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/>
+      </div>
+      <div>
+      <label htmlFor="email" className='block'>Email ID</label>
+      <input placeholder="Enter your email ID" id='email' {...register("email", { required: true })} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/>
+      </div>
+      <div>
+      <label htmlFor="phone" className='block'>Phone</label>
+      <input placeholder="Enter your Phone Number" id='phone' {...register("phone", { required: true })} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/>
+      </div>
+      <div>
+      <label htmlFor="website" className='block'>Website URL</label>
+      <input placeholder="website URL" id='website' {...register("website", { required: true })} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/>
+      </div>
+      <div>
+      <label htmlFor="company" className='block'>Company Name/Moto</label>
+      <input placeholder="company name/moto" id='company' {...register("company")} className='border border-gray-500 h-8 w-full rounded-lg text-sm p-2 mt-1'/>
+      </div>
+      <div className='col-span-2'>
+        {/* include validation with required or other standard HTML validation rules */}
+      <label htmlFor="address" className='block'>Address</label>
+      <input placeholder="street / suite / city / zipcode" id='address' {...register("address")} className='border border-gray-500 h-8 w-full rounded-lg text-md p-2 mt-1'/>
+      </div>
+      {/* errors will return when field validation fails  */}
+      {errors.exampleRequired && <span>This field is required</span>}
+
+      <div className='h-full w-full flex justify-between items-center col-span-2 mt-2'>
+      <button onClick={(onclose)} className='bg-[#F05656] h-10 w-20 rounded-md text-white font-bold cursor-pointer hover:bg-[#f47777]'>Cancel</button>
+      <input type="submit" className='bg-[#2E2E2E] h-10 w-20 rounded-md text-white font-bold cursor-pointer hover:bg-[#545454]' />
+      </div>
+    </form>
+        </div>
+
+    </div>
+  )
+}
 
 export default UpdateUser
