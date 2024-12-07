@@ -5,10 +5,8 @@ import {
   MailOutlined,
   PhoneOutlined,
   GlobalOutlined,
-  // HeartTwoTone,
   EditOutlined,
   DeleteFilled,
-  HeartOutlined,
   HeartFilled,
 } from "@ant-design/icons";
 
@@ -48,16 +46,16 @@ function ShowUser({ name, email, phone, website }) {
           />
         </div>
 
-        <div className="h-40%">
+        <div className="h-40% w-full">
           <h3 className="ml-2  font-semibold text-lg">{name}</h3>
 
-          <div className="grid grid-cols-2 w-11 m-1 text-gray-600 text-[15px]">
+          <div className="w-12 grid grid-cols-2 m-1 text-gray-600 text-[15px] text-nowrap">
           <MailOutlined/>
-          <span className="px-1 pb-1 ">{email}</span>
+          <span className="px-1 pb-1 w-full">{email}</span>
           <PhoneOutlined/>
-          <span className="px-1 pb-1 ">{phone}</span>
+          <span className="px-1 pb-1 w-full">{phone}</span>
           <GlobalOutlined/>
-          <span className="px-1 pb-1 "> {website}</span>
+          <span className="px-1 pb-1 w-full"> {website}</span>
           </div>
 
         </div>

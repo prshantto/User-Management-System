@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios';
 import { useForm } from "react-hook-form"
 
 function CreateUser({onclose}) {
@@ -10,13 +11,11 @@ function CreateUser({onclose}) {
         formState: { errors },
       } = useForm()
     
-      const onSubmit = (data) => {
-        onclose()
-        console.log(data);
-        console.log(data.name)
+      const onSubmit = async (data) => {
+        onclose();
+        const response = await axios.post('http://localhost:3000/create-user', data);
+        console.log('Response:', response.data);
       }
-
-    //   console.log(watch("example")) // watch input value by passing the name of it
 
   return (
     <div className="h-screen w-screen flex justify-center items-center fixed inset-0  bg-black bg-opacity-30 backdrop-blur-sm">

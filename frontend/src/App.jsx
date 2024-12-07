@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import axios from 'axios';
 import Topbar from "./components/topbar"
 import UserCard from "./components/UserCard"
 
@@ -5,21 +7,27 @@ import UserCard from "./components/UserCard"
 
 function App() {
 
+  const [users, setUser] = useState([])
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/").then((response) => {
+      setUser(response.data);
+    });
+  }, []);
+
   return (
     <>
       <Topbar/>
       <div className='h-full w-full p-2 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4'>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
-        <UserCard name={"prashant"} email={"prashant@12fbfbifhbishb3"} phone={"123456789"} website={"prashant.tech"}/>
+      {users.map((user) => (
+          <UserCard
+            key={user._id}
+            name={user.name}
+            email={user.email}
+            phone={user.phone}
+            website={`http://${user.website}`}
+          />
+        ))}
 
       </div>
     </>

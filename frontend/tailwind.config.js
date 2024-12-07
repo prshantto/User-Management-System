@@ -8,6 +8,7 @@ export default {
   theme: {
   	extend: {
 		height: { 
+			'60%': '60%',
 			'50%': '50%',
 			'40%': '40%' ,
 			'30%': '30%' ,
