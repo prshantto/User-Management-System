@@ -65,7 +65,6 @@ export function UserCard({onclose}) {
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button onClick={(onclose)} variant="destructive">Cancel</Button>
-        {/* <button >Cancel</button> */}
         <Button onClick={(()=>{alert("User Created"), onclose()})}>Create</Button>
       </CardFooter>
     </Card>

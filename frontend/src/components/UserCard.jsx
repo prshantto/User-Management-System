@@ -25,7 +25,7 @@ function ShowUser({ name, email, phone, website }) {
 
         <div className="h-50% bg-gray-100 text-center flex items-center justify-center">
           <img
-            className="rounded-full p-3"
+            className="rounded-full p-3 cursor-pointer"
             src={`https://api.dicebear.com/9.x/lorelei/svg?size=150&hair=variant${randomNumber()}&eyes=variant${randomNumber()}&mouth=happy${randomNumber()}&nose=variant04`}
             alt="Avatar"
           />
