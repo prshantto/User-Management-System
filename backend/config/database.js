@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config({ path: './.env' });
 
-const dbconnection = mongoose.connect('mongodb+srv://prashant:8851826868@database.pzff2.mongodb.net/userdata').then(()=>{
+
+const dbconnection = mongoose.connect(process.env.DB_STRING).then(()=>{
     console.log('connected to database!')
 });
 

@@ -10,7 +10,7 @@ function App() {
   const [users, setUser] = useState([])
 
   useEffect(() => {
-    axios.get("http://localhost:3000/").then((response) => {
+    axios.get(import.meta.env.VITE_REACT_APP_FETCH_URL).then((response) => {
       setUser(response.data);
     });
   }, []);
